@@ -12,6 +12,8 @@ def read_data_file(filename):
         for line in file:
             # Replace this by putting each line into a list
             data = line.split()
+            data[0] = float(data[0])
+            data[1] = float(data[1])
             datalist.append(data)
     file.close()
     return datalist
