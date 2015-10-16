@@ -21,9 +21,9 @@ def read_data_file(filename):
     file.close()
     return datalist
 
-def write_network(w1, w2, name, outcome):
+def write_learned_weights(w1, w2, name):
     try:
-        file = open(FILE_TO_WRITE, 'ab')
+        file = open(LEARNED_DATA, 'ab')
     except IOError:
         sys.exit('ERROR, unable to write file.')
     else:
@@ -33,17 +33,4 @@ def write_network(w1, w2, name, outcome):
         file.write(' ')
         file.write(name)
         file.write(' ')
-        file.write(str(outcome))
         file.write('\n')
-
-def read_network():
-    try:
-        file = open(FILE_TO_WRITE, 'r')
-    except IOError:
-        sys.exit('ERROR, unable to open file. Check filename.')
-    else:
-        datalist = []
-        for line in file:
-            datalist.append(line)
-    file.close()
-    return datalist
