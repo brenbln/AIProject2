@@ -1,7 +1,7 @@
 __author__ = 'bbelen'
 
-import helper
-import constants
+from helper import *
+from constants import *
 from node import Node
 
 N = []
@@ -16,7 +16,12 @@ N.append(Node('Atlantic'))
 N.append(Node('Indian'))
 N.append(Node('Pacific'))
 
-datalist = helper.read_data_file(constants.FILENAME)
+datalist = read_data_file(FILENAME)
+open(FILE_TO_WRITE, 'w').close
 for data in datalist:
     for node in N:
         node.handle_weight(data[0], data[1], data[2])
+
+new_datalist = read_data_file(FILE_TO_WRITE)
+for data in new_datalist:
+    print data
