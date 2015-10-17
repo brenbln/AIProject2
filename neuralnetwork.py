@@ -6,6 +6,8 @@ from node import Node
 
 # Runs the input data through the newly built neural network
 def test(node, x, y, loc, num_fired):
+    x = x/90 # Normalize the data
+    y = y/180
     total = node.weight_1 * x + node.weight_2 * y
     if node.name == loc:
         expected = 1
@@ -15,6 +17,7 @@ def test(node, x, y, loc, num_fired):
         outcome = 1
     else:
         outcome = 0
+    # print node.name, node.weight_1, node.weight_2, expected, outcome
 
     if outcome == 0 and expected == 0:
         node.true_negatives += 1
@@ -52,7 +55,7 @@ def compute_node_stats(node):
 def compute_data_stats():
     print '\n'
     print 'Test Data Statistics:'
-    print ' Total amount of data tested: ', len(test_datalist)
+    print ' Total amount of data tested: ', correct_neuron_fired + zero_neuron_fired + multiple_neuron_fired
     print ' Correct number of neurons fired: ', correct_neuron_fired
     print ' Number of times zero neurons fired: ', zero_neuron_fired
     print ' Number of times multiple neurons fired: ', multiple_neuron_fired
@@ -85,9 +88,11 @@ N.append(Node('Pacific')) # 9
 
 datalist = read_data_file(FILENAME)
 open(LEARNED_DATA, 'w').close # This will wipe the file with the modified weights every time the program runs
-for data in datalist:
-    for node in N:
-        node.handle_weight(data[0], data[1], data[2])
+for i in range(0,num_epochs):
+    for data in datalist:
+        for node in N:
+            node.handle_weight(data[0], data[1], data[2])
+    learning_rate *= 0.8 # Decrements the learning rate, thanks to Lucas and Rex for this idea
 
 for node in N:
     write_learned_weights(node.weight_1, node.weight_2, node.name)

@@ -1,0 +1,4 @@
+90.0 0.0 Asia
+90.0 0.0 Asia
+0.0 0.0 Europe
+0.0 90.0 Europe

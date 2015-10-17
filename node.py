@@ -18,6 +18,8 @@ class Node:
         self.name = name
 
     def handle_weight(self, x, y, loc):
+        x = x/90 # Normalize the data
+        y = y/180
         total = self.weight_1 * x + self.weight_2 * y
         if self.name == loc:
             expected = 1
@@ -27,11 +29,6 @@ class Node:
             outcome = 1
         else:
             outcome = 0
-        while outcome != expected:
-            self.weight_1 = self.weight_1 + learning_rate * (expected - outcome) * x
-            self.weight_2 = self.weight_2 + learning_rate * (expected - outcome) * y
-            total = self.weight_1 * x + self.weight_2 * y
-            if total > t_hold:
-                outcome = 1
-            else:
-                outcome = 0
+        self.weight_1 = self.weight_1 + learning_rate * (expected - outcome) * x
+        self.weight_2 = self.weight_2 + learning_rate * (expected - outcome) * y
+        # print self.weight_1, self.weight_2, expected, outcome, self.name
