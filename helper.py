@@ -7,7 +7,8 @@ def read_data_file(filename):
     try:
         file = open(filename, 'r')
     except IOError:
-        sys.exit('ERROR, unable to open file. Check filename.')
+        print 'ERROR, unable to open file. Check filename.'
+        return 0
     else:
         datalist = []
         for line in file:
@@ -34,3 +35,4 @@ def write_learned_weights(w1, w2, name):
         file.write(name)
         file.write(' ')
         file.write('\n')
+    file.close()

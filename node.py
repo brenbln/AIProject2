@@ -31,4 +31,3 @@ class Node:
             outcome = 0
         self.weight_1 = self.weight_1 + learning_rate * (expected - outcome) * x
         self.weight_2 = self.weight_2 + learning_rate * (expected - outcome) * y
-        # print self.weight_1, self.weight_2, expected, outcome, self.name
